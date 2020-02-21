@@ -7,8 +7,24 @@ var strong = damage / 2
 
 /*Pokedex Start */
 var repository = [
-    {name:'bulbasaur', type: ['grass' ,'poison'], height: 0.8},
-    {name:'squirtle', type: 'water', height: 0.5},
-    {name:'charmander', type: 'fire', height: 0.7},
+    {
+        name:'bulbasaur', 
+        type: ['grass' ,'poison'], 
+        height: 0.8
+    },
+    {
+        name:'squirtle', 
+        type: 'water', 
+        height: 0.5
+    },
+    {
+        name:'charmander', 
+        type: 'fire', 
+        height: 0.7
+    },
 
 ]
+
+for (var i = 0; i < repository.length; i++) {
+    document.write(repository[i].name + ' ');
+}
