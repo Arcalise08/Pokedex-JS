@@ -14,17 +14,25 @@ var repository = [
     },
     {
         name:'squirtle', 
-        type: 'water', 
+        type: ['water'],
         height: 0.5
     },
     {
-        name:'charmander', 
-        type: 'fire', 
-        height: 0.7
+        name:'charizard', 
+        type: ['fire'],
+        height: 1.7
     },
-
 ]
 
+
 for (var i = 0; i < repository.length; i++) {
-    document.write(repository[i].name + ' ');
+    if (repository[i].height >= 1) {
+        var heightdisplay = " wow thats big!"
+    }
+    else {
+        var heightdisplay = ''
+    }
+    document.write(repository[i].name + ' ' + repository[i].height + '' + heightdisplay +'<br>')
+    if (repository[i].height >= 1) {
+    }
 }
