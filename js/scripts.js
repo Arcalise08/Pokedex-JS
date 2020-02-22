@@ -1,32 +1,47 @@
-/*This is for later 
-/*    squirtle: {type: 'water', height: 0.5},
-    charmander: {type: 'fire', height: 0.6}, */
-var damage = null
-var weak = damage * 2
-var strong = damage / 2
+/* 
+usage to add new pokemon---
+pokeydata.add({name: "name", height: number , type: ["pokemontype"]}) 
+*/
 
-/*Pokedex Start */
-var repository = [
-    {
-        name:'bulbasaur', 
-        type: ['grass' ,' poison'], 
-        height: 0.8
-    },
-    {
-        name:'squirtle', 
-        type: ['water'],
-        height: 0.5
-    },
-    {
-        name:'charizard', 
-        type: ['fire'],
-        height: 1.7
-    },
-]
+/* Pokedex Start */
+
+var pokeydata = (function() {
+    var pokedex = [];
+
+    function add(pokeman) {
+        if (typeof pokeman.name === "string" && 
+            typeof pokeman.height === "number" && 
+            typeof pokeman.type[0] === "string" ) {
+        
+            pokedex.push(pokeman);
+        }
+
+        else {
+        console.log('Incorrect usage//pokeydata.add({name: "name", height: number , type: ["pokemontype"]})')
+        }
+    }
+
+    function getAll() {
+        return pokedex
+    }
+
+    return {
+        add: add,
+        getAll: getAll,
+    };
+
+})()
+
+pokeydata.add({name: 'Bulbasaur', height: 2.4, type: ['Grass', ' Poison']});
+pokeydata.add({name: 'Squirtle', height: 2.8, type: ['Water']});
+pokeydata.add({name: 'Charmander', height: 2.0, type: ['Fire']});
 
 
-repository.forEach(function(currentName){
+pokeydata.getAll().forEach(function(currentName) {
     document.write('<p>'+'name: '+'<strong>'+currentName.name+'</strong>'+'</p>')
     document.write('<p>'+'height: '+ currentName.height+'</p>')
     document.write('<p>'+'type: ' + currentName.type+'</p>')
+    
 });
+
+
