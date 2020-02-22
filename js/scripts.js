@@ -9,7 +9,7 @@ var strong = damage / 2
 var repository = [
     {
         name:'bulbasaur', 
-        type: ['grass' ,'poison'], 
+        type: ['grass' ,' poison'], 
         height: 0.8
     },
     {
@@ -25,14 +25,25 @@ var repository = [
 ]
 
 
-for (var i = 0; i < repository.length; i++) {
-    if (repository[i].height >= 1) {
-        var heightdisplay = " wow thats big!"
-    }
-    else {
-        var heightdisplay = ''
-    }
-    document.write(repository[i].name + ' ' + repository[i].height + '' + heightdisplay +'<br>')
-    if (repository[i].height >= 1) {
-    }
-}
+repository.forEach(function(currentName){
+    document.write('<p>'+'name: '+'<strong>'+currentName.name+'</strong>'+'</p>')
+    document.write('<p>'+'height: '+ currentName.height+'</p>')
+    document.write('<p>'+'type: ' + currentName.type+'</p>')
+});
+
+
+/*   pokeList.forEach(function(property) {
+
+            if (property[i].height >= 1) {
+                var heightlabel = "<strong> wow thats big! </strong>"
+            }
+            else {
+                var heightlabel = ''
+            }
+
+            document.write('<p>' + property[i].name + ' ' + property[i].height + ' ' +  heightlabel +'</p>')
+        
+    )}
+
+    printPokylist(repository);
+*/
