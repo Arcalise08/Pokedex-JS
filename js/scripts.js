@@ -30,20 +30,3 @@ repository.forEach(function(currentName){
     document.write('<p>'+'height: '+ currentName.height+'</p>')
     document.write('<p>'+'type: ' + currentName.type+'</p>')
 });
-
-
-/*   pokeList.forEach(function(property) {
-
-            if (property[i].height >= 1) {
-                var heightlabel = "<strong> wow thats big! </strong>"
-            }
-            else {
-                var heightlabel = ''
-            }
-
-            document.write('<p>' + property[i].name + ' ' + property[i].height + ' ' +  heightlabel +'</p>')
-        
-    )}
-
-    printPokylist(repository);
-*/
