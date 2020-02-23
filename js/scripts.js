@@ -79,8 +79,10 @@ var pokeydata = (function() {
 pokeydata.add({name: 'Bulbasaur', height: 2.4, type: ['Grass', ' Poison']});
 pokeydata.add({name: 'Squirtle', height: 2.8, type: ['Water']});
 pokeydata.add({name: 'Charmander', height: 2.0, type: ['Fire']});
+pokeydata.add({name: 'Ivysaur', height: 3.2, type: ['Grass', 'Poison']});
 
 /*Pokemon List Container*/
+
 var $pokemoncontainer = document.querySelector('.pokeman-list');
 
 /*Publishes pokemon data to viewable list*/
