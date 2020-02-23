@@ -58,7 +58,10 @@ var pokeydata = (function() {
 
         /*Outputs details of pokemon to log*/   
         function showDetails(currentPoke)  {
-            console.log(currentPoke.name + ' ' + currentPoke.height + " " + currentPoke.type);
+            var $outputContainer =  document.querySelector('.details');
+            var outputDetails = currentPoke.name + ' ' + currentPoke.height + "m Type: " + currentPoke.type;
+            console.log(outputDetails);
+            $outputContainer.innerText = outputDetails;
         }
 
         /*Usable Commands*/
