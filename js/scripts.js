@@ -96,4 +96,5 @@ var pokeydata = (function() {
 
 
 pokeydata.loadListdata();
+pokeydata.getAll();
 
