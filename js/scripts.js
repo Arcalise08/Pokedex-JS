@@ -5,86 +5,95 @@ usage to add new pokemon to list
 pokeydata.addListItem({name: 'pokemon-name, height: number, type:['pokemontype']})
 */
 
+/*Pokemon List Container*/
+
+
 /* Pokedex storage data */
+
 var pokeydata = (function() {
     var pokedex = [];
+    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    var $pokemoncontainer = document.querySelector('.pokeman-list');
+    
 
-    function add(pokeman) {
+    function createListItem(currentPoke) {
 
-        /*Validation Check*/
-        if (typeof pokeman.name === "string" && 
-            typeof pokeman.height === "number" && 
-            typeof pokeman.type[0] === "string" ) {
-        /*Add pokemon data to array*/
-            pokedex.push(pokeman);
-        }
-        /*Errors out when wrong data entered*/
-        else {
-        console.log('Incorrect usage//pokeydata.add({name: "name", height: number , type: ["pokemontype"]})')
-        }
+            /**/        
+            var $listItem = document.createElement('li');
+            var $button = document.createElement('button');
+            $button.innerText = (currentPoke.name);
+            $listItem.appendChild($button);
+            $pokemoncontainer.appendChild($listItem);
+            addEventButton($button, currentPoke);
     }
+
+    function loadListdata() {
+        fetch(apiUrl).then(function(response) {
+            return response.json()
+        }).then(function(json) {
+            json.results.forEach(function(item) {
+
+            var pokeyman = {
+                name: item.name,
+                detailsurl: item.url
+            };
+            
+            add(pokeyman);
+            })
+        }).catch(function(error) {
+            console.log(error)
+        })
+    }
+
+
+    /*adds click event listener to button*/  
+    function addEventButton($button, currentPoke) {
+        $button.addEventListener('click', function () {
+            showDetails(currentPoke);
+        })};
+
+    function showDetails(item) {
+        pokeydata.loadDetails(item).then(function () {
+            console.log(item);   });
+    }
+
+        function loadDetails(currentPoke) {
+            var url = currentPoke.detailsurl;
+            return fetch(url).then(function (response) {
+                return response.json();
+            }).then(function (details) {
+              // Now we add the details to the item
+                currentPoke.imageUrl = details.sprites.front_default;
+                currentPoke.height = details.height;
+                currentPoke.types = Object.keys(details.types);
+            }).catch(function (e) {
+                console.error(e);
+            });
+        }
+    
+
+    function add(pokemon) {
+        pokedex.push(pokemon)
+        createListItem(pokemon)
+    }
+    
         /*Returns pokemon data*/
     function getAll() {
         return pokedex
     }
 
-    function addListItem(currentPoke) {
-
-        /*Validation Check*/
-        if (typeof currentPoke.name === "string" && 
-            typeof currentPoke.height === "number" && 
-            typeof currentPoke.type[0] === "string" ) {
-
-        /*Add pokemon button to list*/        
-        var $listItem = document.createElement('li');
-        var $button = document.createElement('button');
-        $button.innerText = (currentPoke.name);
-        $listItem.appendChild($button);
-        $pokemoncontainer.appendChild($listItem);
-        addEventButton($button, currentPoke);
-        
-        }
-
-        /*Errors out when wrong data entered*/
-        else {
-        console.log('Incorrect usage//pokeydata.addListItem({name: "name", height: number , type: ["pokemontype"]})')
-        }
-    } 
-        /*adds click event listener to button*/  
-        function addEventButton($button, currentPoke) {
-            $button.addEventListener('click', function () {
-                showDetails(currentPoke)
-            })};
-
-        /*Outputs details of pokemon to log*/   
-        function showDetails(currentPoke)  {
-            var $outputContainer =  document.querySelector('.details');
-            var outputDetails = currentPoke.name + ' ' + currentPoke.height + "m Type: " + currentPoke.type;
-            console.log(outputDetails);
-            $outputContainer.innerText = outputDetails;
-        }
-
         /*Usable Commands*/
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem,
+        addEventButton: addEventButton,
+        loadListdata: loadListdata,
+        loadDetails: loadDetails,
         showDetails: showDetails,
-        addEventButton: addEventButton
-    };
+        };
 
-})()
+})();
 
-/*Pokemon to add to list*/
-pokeydata.add({name: 'Bulbasaur', height: 2.4, type: ['Grass', ' Poison']});
-pokeydata.add({name: 'Squirtle', height: 2.8, type: ['Water']});
-pokeydata.add({name: 'Charmander', height: 2.0, type: ['Fire']});
 
-/*Pokemon List Container*/
-var $pokemoncontainer = document.querySelector('.pokeman-list');
-
-/*Publishes pokemon data to viewable list*/
-pokeydata.getAll().forEach(function(currentPoke) {
-    pokeydata.addListItem(currentPoke)
-});
+pokeydata.loadListdata();
 
