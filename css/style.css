@@ -51,58 +51,203 @@ li {
 .pokeman-list {
     display: inline-flex;
     flex-direction: column;
-    margin: 0 auto;
     list-style-type: none;
-    width: 80%;
-    padding: 10%;
+    width: 75%;
+    padding: 5%;
     padding-top: 0;
     padding-bottom: 2%;
-    margin: 5%;
     margin-top: 0;
     margin-bottom: 5%
     
 }
 
-.Fire {
-    display: inline-block;
-    border: thin ridge rgb(126, 124, 124);
-    flex: 1 1 25px;
-    width: 30%;
-    height: 10%;
-    padding:5%;
-    font-size: 16px;
-    background-color: rgba(230, 60, 30, 0.548);
-    transition: 3s, opacity;
+#detailsContainer {
+    display: none;
 }
 
-.Water {
-    display: inline-block;
-    border: thin ridge rgb(126, 124, 124);
-    flex: 1 1 25px;
-    width: 30%;
-    height: 10%;
-    padding:5%;
-    font-size: 16px;
-    background-color: rgba(54, 160, 221, 0.719);
-    transition: 3s, opacity;
-}
-
-.Grass {
-    display: inline-block;
-    border: thin ridge rgb(126, 124, 124);
-    flex: 1 1 25px;
-    width: 30%;
-    height: 10%;
-    padding:5%;
-    font-size: 16px;
-    background-color: rgba(90, 156, 81, 0.719);
-    transition: 3s, opacity;
-}
-
-.detailsList {
-    display: inline-block;
+#detailsContainer.is-visible {
+    display: grid;
+    text-align:center;
     position: fixed;
-    flex: 1 2 200px;
-    margin: 0 auto;
-    padding: 5%;
+    box-sizing: border-box;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 999; 
+}
+
+.modalImg {
+    width: 300px;
+    position: relative;
+    right: 35px;
+    height: 230px;
+    float: right;
+    margin: 5px auto;
+    bottom: 15px;
+}
+
+
+#detailsList {
+    margin: auto;
+    box-sizing: border-box;
+    border: thin ridge black;
+    background-color: rgba(209, 209, 209, 0.842);
+    width: 100%;
+    text-transform: capitalize;
+    max-width: 900px;
+}
+
+.modal-title {
+    display: block;
+}
+
+.closeButton {
+    display: inline;
+    position: relative;
+    float: right;
+    right: 0;
+    width: 30px;
+    height: 35px;
+    text-align: center;
+    border: none;
+    padding: 2px;
+}
+
+.summaryDetails {
+    padding: 5px;
+    width: 400px;
+    font-size: large;
+    text-transform: none;
+    position: relative;
+    bottom: 25px;
+    left: 15px;
+}
+
+.modalHeight {
+    padding: 5px;
+    width: 400px;
+    font-size: large;
+    position: relative;
+    bottom: 25px;
+    left: 15px;
+}
+
+/*Nothing else down here!!!*/
+/*Pokey Types Start here*/
+.fire {
+    text-transform: capitalize;
+    background-color: rgba(255, 7, 7, 0.637);
+    font-size: 32px;
+    transition: 3s, opacity;
+}
+
+.grass {
+    text-transform: capitalize;
+    background-color: rgba(5, 201, 5, 0.603);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.water {
+    text-transform: capitalize;
+    background-color: rgba(4, 150, 247, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.electric {
+    text-transform: capitalize;
+    background-color: rgba(221, 218, 22, 0.815);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.normal {
+    text-transform: capitalize;
+    background-color: rgba(126, 125, 125, 0.637);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.dark {
+    text-transform: capitalize;
+    background-color: rgba(44, 5, 77, 0.589);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.bug {
+    text-transform: capitalize;
+    background-color: rgba(106, 151, 2, 0.808);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.flying {
+    text-transform: capitalize;
+    background-color: rgba(111, 108, 114, 0.726);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.poison {
+    text-transform: capitalize;
+    background-color: rgba(138, 31, 226, 0.795);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.ground {
+    text-transform: capitalize;
+    background-color: rgba(214, 135, 16, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.fairy {
+    text-transform: capitalize;
+    background-color: rgba(250, 83, 214, 0.692);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.psychic {
+    text-transform: capitalize;
+    background-color: rgba(235, 14, 143, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+
+.fighting {
+    text-transform: capitalize;
+    background-color: rgba(250, 81, 14, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+.rock {
+    text-transform: capitalize;
+    background-color: rgba(65, 35, 1, 0.685);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+.ghost {
+    text-transform: capitalize;
+    background-color: rgba(69, 26, 73, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+.ice {
+    text-transform: capitalize;
+    background-color: rgba(19, 219, 219, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
+}
+.dragon {
+    text-transform: capitalize;
+    background-color: rgba(11, 2, 85, 0.548);
+    transition: 3s, opacity;
+    font-size: 32px;
 }
