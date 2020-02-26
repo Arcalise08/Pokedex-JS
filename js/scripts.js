@@ -6,8 +6,15 @@ var masterPoke = (function() {
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     var $pokemoncontainer = document.querySelector('.pokeman-list');
 
+    //handles loading text
+    function loadingMessage() {
+        var loading = document.querySelector('#loading');
+        loading.classList.toggle('is-visible');
+        console.log(loading);
+    }
     //gets Pokemon name list from API
     function getApiList() {
+        loadingMessage();
         fetch(apiUrl).then(function(response) {
             return response.json()
         }).then(function(json) {
@@ -16,7 +23,6 @@ var masterPoke = (function() {
                     name: item.name,
                     detailsurl: item.url,
                 };
-                
                 getPokeDetails(tempPoke)
             })
             
@@ -78,7 +84,9 @@ var masterPoke = (function() {
             $listItem.appendChild($button);
             $pokemoncontainer.appendChild($listItem);
             styleButton(pokemon, $button);
+            
         })
+        loadingMessage();
         }
     }
         //styles buttons based on pokemans primary type
@@ -151,7 +159,9 @@ var masterPoke = (function() {
             pokeyBox.appendChild(pokeInfo);
             pokeyBox.appendChild(pokeHeight);
             pokeyContainer.classList.add('is-visible');
+            
         }
+        
         //closes modal on button close
         function buttonClickOut(button, container, list) {
                 button.addEventListener('click', function () {
@@ -185,11 +195,11 @@ var masterPoke = (function() {
         function getAll() {
             return pokedex
         }
-
     //available commands
     return {
     getApiList: getApiList,
     getAll: getAll,
+    loadingMessage: loadingMessage,
     }
 })();
 

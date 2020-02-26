@@ -32,6 +32,14 @@ li {
         padding: .3%;
 }
 
+#loading {
+    display: none;
+}
+
+#loading.is-visible {
+    display: block;
+}
+
 .pokedex-start {
     text-align: center;
 
@@ -140,7 +148,7 @@ li {
 .fire {
     text-transform: capitalize;
     background-color: rgba(255, 7, 7, 0.637);
-    font-size: 32px;
+    font-size: 24px;
     transition: 3s, opacity;
 }
 
@@ -148,106 +156,106 @@ li {
     text-transform: capitalize;
     background-color: rgba(5, 201, 5, 0.603);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .water {
     text-transform: capitalize;
     background-color: rgba(4, 150, 247, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .electric {
     text-transform: capitalize;
     background-color: rgba(221, 218, 22, 0.815);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .normal {
     text-transform: capitalize;
     background-color: rgba(126, 125, 125, 0.637);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .dark {
     text-transform: capitalize;
     background-color: rgba(44, 5, 77, 0.589);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .bug {
     text-transform: capitalize;
     background-color: rgba(106, 151, 2, 0.808);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .flying {
     text-transform: capitalize;
     background-color: rgba(111, 108, 114, 0.726);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .poison {
     text-transform: capitalize;
     background-color: rgba(138, 31, 226, 0.795);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .ground {
     text-transform: capitalize;
     background-color: rgba(214, 135, 16, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .fairy {
     text-transform: capitalize;
     background-color: rgba(250, 83, 214, 0.692);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .psychic {
     text-transform: capitalize;
     background-color: rgba(235, 14, 143, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .fighting {
     text-transform: capitalize;
     background-color: rgba(250, 81, 14, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 .rock {
     text-transform: capitalize;
     background-color: rgba(65, 35, 1, 0.685);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 .ghost {
     text-transform: capitalize;
     background-color: rgba(69, 26, 73, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 .ice {
     text-transform: capitalize;
     background-color: rgba(19, 219, 219, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
 .dragon {
     text-transform: capitalize;
     background-color: rgba(11, 2, 85, 0.548);
     transition: 3s, opacity;
-    font-size: 32px;
+    font-size: 24px;
 }
