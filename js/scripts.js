@@ -6,7 +6,7 @@ var masterPoke = (function() {
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     var $pokemoncontainer = document.querySelector('.pokeman-list');
 
-    //handles loading text
+    //handles loading 
     function loadingMessage() {
         var loading = document.querySelector('#loading');
         loading.classList.toggle('is-visible');
@@ -25,8 +25,10 @@ var masterPoke = (function() {
                 };
                 getPokeDetails(tempPoke)
             })
+            })
             
-        })};
+        }
+
 
         //gets further small details for each pokemon.
         function getPokeDetails(pokemon) {
@@ -34,11 +36,11 @@ var masterPoke = (function() {
             fetch(url).then(function(response){
             return response.json()
         }).then(function(details) {
-            
             pokemon.id = details.id
             pokemon.imageUrl = details.sprites.front_default;
             pokemon.height = details.height;
             pokemon.speciesUrl = details.species.url;
+            pokemon.stats = details.stats
             //for adding pokemon types(API shows types out of order)
             //I.E bulbasaur would be poison instead of grass first without this.
             if (details.types.length === 2) {
@@ -65,6 +67,7 @@ var masterPoke = (function() {
 
         //Sorts pokedex var by pokemon number
         function sortPokedex() {
+            //this keeps it from sorting till all are loaded
             if (pokedex.length === 150) {
             pokedex.sort(function(a, b) {
                 return a.id - b.id;
@@ -72,11 +75,11 @@ var masterPoke = (function() {
             createListItems();
             }
         }
+        
         //Creates name list and buttons for simple list
         function createListItems() {
-            if (pokedex.length === 150) {
+
             pokedex.forEach(function(pokemon) {
-                
             var $listItem = document.createElement('li');
             var $button = document.createElement('button');
             $button.innerText = (pokemon.name);
@@ -87,7 +90,7 @@ var masterPoke = (function() {
             
         })
         loadingMessage();
-        }
+        
     }
         //styles buttons based on pokemans primary type
         function styleButton(pokemon, $button) {
@@ -109,7 +112,7 @@ var masterPoke = (function() {
             fetch(url).then(function(response) {
                 return response.json()
             }).then(function(details){
-                details.flavor_text_entries.forEach(function(details) {
+            details.flavor_text_entries.forEach(function(details) {
 
                     if (details.language.name === "en") {
                         var enDetails = {
@@ -118,78 +121,180 @@ var masterPoke = (function() {
                         enBox.push(enDetails);
                     }
                 })
-                }).then(function() {
+                }).then(function() { 
                 //shows summary text 0(can be changed for different summary text.)
                 pokemon.summary = enBox[0].text;
-                createModal(pokemon);
+                createModalElements(pokemon);
             })
         }
-        //creates popup modal with pokemon details.
-        function createModal(pokemon) {
-            var pokeyContainer = document.querySelector('#detailsContainer');
-            var pokeyBox = document.querySelector('#detailsList');
-            var pokeName = document.createElement('h1');
-            var pokeInfo = document.createElement('p');
-            var pokeImg = document.createElement('img');
-            var closeButton = document.createElement("button");
-            var pokeHeight = document.createElement('p');
+        //creates modal elements
+        function createModalElements(pokemon) {
+            var elements = {
+                leftSide: document.createElement('div'),
+                rightSide: document.createElement('div'),
+                imgContainer: document.createElement('div'),
 
-            clickOutModal(closeButton, pokeyContainer, pokeyBox)
-            buttonClickOut(closeButton, pokeyContainer, pokeyBox)
-            escapeOutModal(closeButton, pokeyContainer, pokeyBox)
+                pokeName: document.createElement('h1'),
+                pokeInfo: document.createElement('p'),
+                pokeImg: document.createElement('img'),
+                closeButton: document.createElement("button"),
+                pokeHeight: document.createElement('p'),
+
+                displayWrapper: document.querySelector('#wrapper'),
+                modalNameCont: document.querySelector('#pokeTitle'),
+                modalOverlay: document.querySelector('#detailsContainer'),
+                modalInline: document.querySelector('#detailsList'),
+                summaryContainer: document.querySelector('#pokeDetails'),
+
+                //stat names
+                attack: document.createElement('p'),
+                defense: document.createElement('p'),
+                specialatk: document.createElement('p'),
+                specialdef: document.createElement('p'),
+                speed: document.createElement('p'),
+                health: document.createElement('p'),
+
+            }
+
+            var statElements = {
+                pokeAtk: document.createElement('p'),
+                pokeDef: document.createElement('p'),
+                pokeSatk: document.createElement('p'),
+                pokeSdef: document.createElement('p'),
+                pokeSpd: document.createElement('p'),
+                pokeHp: document.createElement('p'),
+                }
             
-            pokeHeight.innerHTML = ('<h2>Height: </h2>' + pokemon.height);
-            closeButton.innerHTML = "X";
-
-            pokeName.innerHTML = (pokemon.name);
-            pokeName.style.fontSize = "300%";
-            pokeInfo.innerHTML = ('<h2>Summary</h2>' + pokemon.summary);
-
-            pokeName.classList.add('modal-title')
-            closeButton.classList.add('closeButton')
-            pokeInfo.classList.add('summaryDetails')
-            pokeImg.classList.add('modalImg')
-            pokeHeight.classList.add('modalHeight')
-
-            pokeImg.setAttribute("src", pokemon.imageUrl);
-
-            pokeyBox.appendChild(closeButton);
-            pokeyBox.appendChild(pokeName);
-            pokeyBox.appendChild(pokeImg);
-            pokeyBox.appendChild(pokeInfo);
-            pokeyBox.appendChild(pokeHeight);
-            pokeyContainer.classList.add('is-visible');
+            var stats = {
+                attack: pokemon.stats[4].base_stat,
+                defense: pokemon.stats[3].base_stat,
+                specialatk: pokemon.stats[2].base_stat,
+                specialdef: pokemon.stats[1].base_stat,
+                speed: pokemon.stats[0].base_stat,
+                health: pokemon.stats[5].base_stat,
+            } 
             
+            //Variable for clearing modal
+            var clearAll = { title: elements.modalNameCont, 
+                wrap: elements.displayWrapper, 
+                details: elements.summaryContainer
+            }
+
+
+            buttonClickOut(elements.closeButton, elements.modalOverlay, clearAll);
+            clickOutModal(elements.modalOverlay, clearAll);
+            escapeOutModal(elements.modalOverlay, clearAll);
+
+            createModalDetails(elements, pokemon, statElements, stats);
+        }
+
+        function createModalDetails(elements, pokemon, statElements, stats) {
+            //broad details
+            elements.pokeHeight.innerHTML = ('<h2>Height: </h2>' + pokemon.height);
+            elements.closeButton.innerHTML = "X";
+            elements.pokeImg.setAttribute("src", pokemon.imageUrl);
+            elements.pokeName.innerHTML = (pokemon.name);
+            elements.pokeName.style.fontSize = "300%";
+            elements.pokeInfo.innerHTML = ('<h2>Summary</h2>' + pokemon.summary);
+
+
+            //create stats
+            statElements.pokeAtk.innerHTML = (stats.attack);
+            statElements.pokeDef.innerHTML = (stats.defense);
+            statElements.pokeSatk.innerHTML = (stats.specialatk);
+            statElements.pokeSdef.innerHTML = (stats.specialdef);
+            statElements.pokeSpd.innerHTML = (stats.speed);
+            statElements.pokeHp.innerHTML = (stats.health);
+
+            //display stats to names
+            elements.attack.innerText = "Attack";
+            elements.defense.innerText = "Defense";
+            elements.specialatk.innerText = "Special Attack";
+            elements.specialdef.innerText = "Special Defense";
+            elements.speed.innerText = "Speed";
+            elements.health.innerText = "Health";
+
+            //add container ids
+            elements.leftSide.id = 'leftSide';
+            elements.rightSide.id = 'rightSide';
+            elements.imgContainer.id = 'modalImg';
+            elements.summaryContainer.id = 'pokeDetails';
+
+            //add class names
+            elements.pokeImg.classList.add ('pokeImg');
+            elements.leftSide.classList.add('leftside')
+            elements.rightSide.classList.add('rightside')
+            elements.closeButton.classList.add('closeButton')
+            elements.pokeName.classList.add('modal-title')
+
+
+            appendDetailstoModal(elements, statElements)
+
+        }
+
+        function appendDetailstoModal(elements, statElements) {
+
+            elements.modalNameCont.appendChild(elements.closeButton);
+            elements.modalNameCont.appendChild(elements.pokeName);
+            
+
+            elements.summaryContainer.appendChild(elements.pokeInfo);
+
+            //modal stat & img display
+            elements.displayWrapper.appendChild(elements.leftSide);
+            elements.displayWrapper.appendChild(elements.rightSide);
+            elements.leftSide.appendChild(elements.attack);
+            elements.leftSide.appendChild(statElements.pokeAtk);
+            elements.leftSide.appendChild(elements.specialatk);
+            elements.leftSide.appendChild(statElements.pokeSatk);
+            elements.leftSide.appendChild(elements.speed);
+            elements.leftSide.appendChild(statElements.pokeSpd);
+
+            elements.displayWrapper.insertBefore(elements.imgContainer, elements.rightSide);
+            elements.imgContainer.appendChild(elements.pokeImg);
+
+            elements.rightSide.appendChild(elements.defense);
+            elements.rightSide.appendChild(statElements.pokeDef);
+            elements.rightSide.appendChild(elements.specialdef);
+            elements.rightSide.appendChild(statElements.pokeSdef);
+            elements.rightSide.appendChild(elements.health);
+            elements.rightSide.appendChild(statElements.pokeHp);
+            
+            //end of modal details and open modal
+
+            elements.modalOverlay.classList.toggle("is-visible");
         }
         
         //closes modal on button close
-        function buttonClickOut(button, container, list) {
+        function buttonClickOut(button, container, clearAll) {
                 button.addEventListener('click', function () {
-                    closeModal(button, container, list);
+                    closeModal(container, clearAll);
                 })
         }
         //closes modal on container click out
-        function clickOutModal(button, container, list) {
+        function clickOutModal(container, clearAll) {
                 container.addEventListener('click', (e) => {
                 var target = e.target;
 
                 if (target === container) {
-                    closeModal(button, container, list)
+                    closeModal(container, clearAll)
                 }
             });
             }
         //closes modal on escape button.
-        function escapeOutModal(button, container, list) {
+        function escapeOutModal(container, clearAll) {
             window.addEventListener('keydown',function(k) {
                 if (k.key === 'Escape' && container.classList.contains('is-visible'))
-                closeModal(button, container, list);
+                closeModal(container, clearAll);
             })
         }
         //does the actual closing
-        function closeModal(button, container, list) {
+        function closeModal(container, clearAll) {
             container.classList.remove('is-visible');
-            console.log('!!!!')
-            list.innerHTML = " ";
+            clearAll.title.innerHTML = " ";
+            clearAll.wrap.innerHTML = " ";
+            clearAll.details.innerHTML = " ";
+
             }
         //returns all pokemon
         function getAll() {

@@ -74,27 +74,31 @@ li {
 }
 
 #detailsContainer.is-visible {
-    display: grid;
+    display: flex;
     text-align:center;
     position: fixed;
     box-sizing: border-box;
     padding: 20px;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     z-index: 999; 
 }
 
-.modalImg {
-    width: 300px;
-    position: relative;
-    right: 35px;
-    height: 230px;
-    float: right;
-    margin: 5px auto;
-    bottom: 15px;
+#modalImg {
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    background-color: rgba(238, 89, 89, 0.664);
+    border: thick groove black;
+
+}
+
+.pokeImg{
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -102,14 +106,21 @@ li {
     margin: auto;
     box-sizing: border-box;
     border: thin ridge black;
-    background-color: rgba(209, 209, 209, 0.842);
-    width: 100%;
+    background-color: rgb(197, 49, 5);
+    border: 5px solid rgba(196, 20, 8, 0.945);
+    width: 90%;
     text-transform: capitalize;
     max-width: 900px;
 }
 
+
 .modal-title {
     display: block;
+    margin-top: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .closeButton {
@@ -124,23 +135,57 @@ li {
     padding: 2px;
 }
 
-.summaryDetails {
+#pokeDetails {
+    display: block;
     padding: 5px;
-    width: 400px;
-    font-size: large;
+    width: 100%;
+    font-size: xx-large;
     text-transform: none;
-    position: relative;
-    bottom: 25px;
-    left: 15px;
+    margin: 0 auto;
 }
 
 .modalHeight {
     padding: 5px;
-    width: 400px;
     font-size: large;
-    position: relative;
-    bottom: 25px;
-    left: 15px;
+}
+
+
+
+.attack, .defense, .specialAtk {
+    display: block;
+
+}
+
+.defense {
+    top: 100px;
+}
+
+.specialAtk {
+    top: 120px;
+}
+
+.specialDef, .speed,.health {
+    display:block;
+}
+
+#wrapper {
+    display: flex;
+    margin: auto;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+}
+
+.leftside {
+    margin-left: 15%;
+    margin-right: 10%;
+    font-size: xx-large;
+}
+
+.rightside {
+    font-size: xx-large;
+    margin-right: 15%;
+    margin-left: 10%;
 }
 
 /*Nothing else down here!!!*/
@@ -259,3 +304,31 @@ li {
     transition: 3s, opacity;
     font-size: 24px;
 }
+
+    
+@media all and (max-width: 500px) {
+    .leftside {
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: large
+    }
+    
+    .rightside {
+        font-size: large;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    #pokeDetails {
+        font-size: larger;
+    }
+    #modalImg {
+        margin-top: 50px;
+        height: 100%;
+    }
+  }
+  @media all and (min-width: 500px) and (max-width: 750px){
+
+  }
+  @media all and (max-width: 750px) {
+
+  }
