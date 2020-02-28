@@ -27,9 +27,14 @@ button:active {
     opacity: .4;
 }
 
-li {
-        display: flex;
-        padding: .3%;
+#pokeli {
+    display: none;
+
+}
+
+#pokeli.is-visible {
+    display: flex;
+    padding: .3%;
 }
 
 #loading {
@@ -38,6 +43,46 @@ li {
 
 #loading.is-visible {
     display: block;
+    margin: 0 auto;
+}
+
+.pokedextitle {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    width: 70%;
+}
+
+#searchbar {
+    display: none;
+    margin: 0 auto;
+}
+
+#searchbar.is-visible {
+    display: block;
+    margin: 0 auto;
+    width: 35%;
+    height: 45px
+}
+
+#buttonlist {
+    display: none
+}
+
+#buttonlist.is-visible {
+    display: flex;
+    margin: 0 auto;
+    padding: 10px;
+    border: none;
+}
+
+#searchbutton, #resetbutton, #filterbutton {
+    display: inline-block;
+    flex: 1 1 250px;
+    text-align: center;
+    width: 50%;
+    height: auto;
+    padding: 10px;
 }
 
 .pokedex-start {
@@ -192,28 +237,29 @@ li {
 /*Pokey Types Start here*/
 .fire {
     text-transform: capitalize;
-    background-color: rgba(255, 7, 7, 0.637);
+    background-color: rgba(146, 3, 3, 0.836);
+    background-image: ;
     font-size: 24px;
     transition: 3s, opacity;
 }
 
 .grass {
     text-transform: capitalize;
-    background-color: rgba(5, 201, 5, 0.603);
+    background-color: rgba(13, 139, 45, 0.884);
     transition: 3s, opacity;
     font-size: 24px;
 }
 
 .water {
     text-transform: capitalize;
-    background-color: rgba(4, 150, 247, 0.548);
+    background-color: rgba(21, 7, 212, 0.712);
     transition: 3s, opacity;
     font-size: 24px;
 }
 
 .electric {
     text-transform: capitalize;
-    background-color: rgba(221, 218, 22, 0.815);
+    background-color: rgba(168, 166, 3, 0.815);
     transition: 3s, opacity;
     font-size: 24px;
 }
@@ -234,28 +280,28 @@ li {
 
 .bug {
     text-transform: capitalize;
-    background-color: rgba(106, 151, 2, 0.808);
+    background-color: rgb(119, 148, 38);
     transition: 3s, opacity;
     font-size: 24px;
 }
 
 .flying {
     text-transform: capitalize;
-    background-color: rgba(111, 108, 114, 0.726);
+    background-image: linear-gradient(90deg, rgba(87, 216, 255, 0.637), rgb(182, 118, 65));
     transition: 3s, opacity;
     font-size: 24px;
 }
 
 .poison {
     text-transform: capitalize;
-    background-color: rgba(138, 31, 226, 0.795);
+    background-color: rgba(85, 2, 153, 0.795);
     transition: 3s, opacity;
     font-size: 24px;
 }
 
 .ground {
     text-transform: capitalize;
-    background-color: rgba(214, 135, 16, 0.548);
+    background-color: rgba(114, 71, 6, 0.986);
     transition: 3s, opacity;
     font-size: 24px;
 }
@@ -288,7 +334,7 @@ li {
 }
 .ghost {
     text-transform: capitalize;
-    background-color: rgba(69, 26, 73, 0.548);
+    background-image: linear-gradient(90deg, purple, rgb(73, 73, 73));
     transition: 3s, opacity;
     font-size: 24px;
 }
@@ -325,6 +371,14 @@ li {
         margin-top: 50px;
         height: 100%;
     }
+
+    .pokedextitle {
+        width: 100%;
+    }
+    #searchbar.is-visible {
+        height: 35px;
+    }
+    
   }
   @media all and (min-width: 500px) and (max-width: 750px){
 

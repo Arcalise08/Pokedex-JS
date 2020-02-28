@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple JS App</title>
+    <title>Pokedex</title>
   </head>
 
   <body>
@@ -24,8 +24,17 @@
 
     <div class="pokedex-start">        
       <div class="master-pokedex">
-        <h1>Pokedex</h1>
-        <p id='loading'>loading...please wait!</p>
+        <img class='pokedextitle' src="img/pokedex.png" alt="">
+          <div id='buttonlist' class='is-visible'>
+            <button id='searchbutton' class='is-visible'>Search</button>
+            <button id='filterbutton' class='is-visible'>Filter</button>
+            <button id='resetbutton' class='is-visible'>Reset</button>
+            
+            
+            
+          </div>
+        <input id='searchbar' class='' type="text">
+        <img id='loading' src="img/loading.gif" alt="">
         <ul class='pokeman-list'>
         </ul>
       </div>
