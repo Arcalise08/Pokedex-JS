@@ -102,6 +102,7 @@ var masterPoke = (function() {
         $pokemoncontainer.appendChild($listItem);
         styleButton(pokemon, $button);
         
+        
     })
     
 
@@ -120,7 +121,10 @@ var masterPoke = (function() {
 
     //adds listener on button & loads details on click
     function addListener(pokemon, $button) {
+        console.log(pokemon)
         $button.addEventListener('click', function () {
+            
+            
             loadMoreDetails(pokemon);
         })
     }
@@ -145,6 +149,7 @@ var masterPoke = (function() {
             //shows summary text 0(can be changed for different summary text.)
             pokemon.summary = enBox[0].text;
             createModalElements(pokemon);
+            
             
         })
     }
